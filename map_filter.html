@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var sample=[1,2,3]
+
+		//foreach
+
+
+		//ES5
+		// sample.forEach(function(ele,index){
+		// 	console.log(ele+" Comes at"+index)
+		// })
+
+		//ES6 
+		//sample.forEach((ele,index)=> `${ele} Comes at ${index}`)
+
+		//sample.forEach((ele,index)=> (console.log(ele+"Comes at "+index)))
+
+
+		//filter
+		//ES5
+		// var res=sample.filter(function(ele){
+		// 	return ele!==2
+		// })
+		// console.log(res)
+
+		//ES6
+		//var res2=sample.filter(ele=>ele!==2)
+		//console.log(res2)
+
+
+		//MAP
+		//ES5
+		// var mapped1=sample.map(function(ele){
+		// 	return ele*10
+		// })
+		// console.log("Mapped 1"+mapped1)
+
+		// //ES6
+		// var mapped2=sample.map(ele=>ele*10)
+		// console.log("Mapped 2"+mapped2)
+
+		
+		//REDUCE
+		//ES5
+
+		var sum1=sample.reduce(function(sum,ele){
+			return sum+ele
+		})
+
+		console.log(sum1)
+
+
+		//ES6
+		var sum2=sample.reduce((sum,ele)=>sum+ele)
+		console.log(sum2)
+
+
+
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var sample=[1,2,3]
+
+		//foreach
+
+
+		//ES5
+		// sample.forEach(function(ele,index){
+		// 	console.log(ele+" Comes at"+index)
+		// })
+
+		//ES6 
+		//sample.forEach((ele,index)=> `${ele} Comes at ${index}`)
+
+		//sample.forEach((ele,index)=> (console.log(ele+"Comes at "+index)))
+
+
+		//filter
+		//ES5
+		// var res=sample.filter(function(ele){
+		// 	return ele!==2
+		// })
+		// console.log(res)
+
+		//ES6
+		var res2=sample.filter(ele=>ele!==2)
+		console.log(res2)
+					
+			var evens=[10,23,43,54,65,7,67,44]
+			undefined
+			var plusOne=evens.map(v => v+1)
+			undefined
+			plusOne
+			(8) [11, 24, 44, 55, 66, 8, 68, 45]
+			hello=function(){
+				return "Hello World"
+			}
+			ƒ (){
+				return "Hello World"
+			}
+			hello=()=>{
+				return "Hello World"
+			}
+			()=>{
+				return "Hello World"
+			}
+			hello=()=> "Hello World"
+			()=> "Hello World"
+			hello=(myval)=>"Hello"+myval
+			(myval)=>"Hello"+myval
+			hello(100)
+			"Hello100"
+			hello=myval=>"Hello"+myval
+			myval=>"Hello"+myval
+			hello(100)
+			"Hello100"
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+

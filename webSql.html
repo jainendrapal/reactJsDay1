@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var db=openDatabase('myRecords','1.0','Description',2*1024*1024)
+		db.transaction(function(tx){
+			tx.executeSql('CREATE TABLE Employee(id unique,name)')
+		})
+
+		db.transaction(function(tx){
+			// tx.executeSql('INSERT INTO Employee(id,name) values(101,"Eshan")')
+			tx.executeSql('INSERT INTO Employee(id,name) values(102,"Minal")')
+			tx.executeSql('INSERT INTO Employee(id,name) values(103,"Tanish")')
+			tx.executeSql('INSERT INTO Employee(id,name) values(104,"Suha")')
+		})
+
+		db.transaction(function(tx){
+			tx.executeSql('select * from Employee',[],function(tx,result){
+				var len=result.rows.length,i
+				for(i=0;i<len;i++){
+					alert(result.rows.item(i).name)
+				}
+			})
+		})	
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

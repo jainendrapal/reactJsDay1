@@ -1,0 +1,45 @@
+<html>
+<head>
+<script>
+ var records = [
+ {
+   id:1,
+   name:"Jhon",
+   years:10
+ },
+ {
+   id:2,
+   name:"Jhon2",
+   years:10
+ },
+ {
+   id:3,
+   name:"Jhon3",
+   years:10
+ },
+ {
+   id:4,
+   name:"Jho4",
+   years:10
+ },{
+   id:5,
+   name:"Jhon5",
+   years:10
+ }
+ ];
+ 
+ 
+ var names = [];
+    records.map(name=>names.push(name.name));
+   
+   console.log(names);
+   
+   var singleName = records.filter(rec=>rec.name === "Jhon2");
+   console.log(singleName)
+
+</script>
+</head>
+<body></body>
+
+
+</html>

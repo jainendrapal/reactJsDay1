@@ -1,0 +1,70 @@
+
+props
+
+
+Props are used for passing data to child component as attribute
+
+props are usually passed down from 'above' parent component
+
+Props are immutable 
+
+
+state
+
+State is used for defining the shape of data both initially and upon user interaction
+
+state is created in the component it gets its initial data in the constructor() method
+
+State is changeable 
+we can use setState to change the value
+
+class Point {
+    var x = 0;
+    var y = 0;
+    function constructor() {
+    	log("defult");
+    }
+    function constructor(x : number, y : number) {
+    	log("x y");
+        	this.set(x, y);
+    }
+    function constructor(other : Point) {
+    	log("other");
+	this.set(other);
+    }
+   function set(x : number, y : number) : void {
+	this.x = x;
+	this.y = y;
+    }
+    function set(other : Point) : void {
+	this.set(other.x, other.y);
+    }
+    function show():void{
+    	log(this.x);
+    	log(this.y);
+    }
+}
+
+
+class _Main{
+	static function main(args : string[]) : void {
+			var p=new Point();
+			p.set(10,20);
+			p.show();
+	}
+}
+
+
+
+
+JSX is faster because it performs optimization while compiling code to JavaScript.
+It is also type-safe and most of the errors can be caught during compilation.
+JSX makes it easier and faster to write templates if you are familiar with HTML.
+
+
+
+
+
+JSX is a preprocessor step that adds XML syntax to JavaScript. You can definitely use React without JSX but JSX makes React a lot more elegant.
+Just like XML, JSX tags have a tag name, attributes, and children. If an attribute value is enclosed in quotes, the value is a string. Otherwise, wrap the value in braces and the value is the enclosed JavaScript expression.
+

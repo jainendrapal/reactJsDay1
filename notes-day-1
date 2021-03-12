@@ -1,0 +1,994 @@
+https://codebunk.com/b/4111100232402/
+
+
+
+const path = require('path');
+
+var config = {
+   entry: './main.js',
+   output: {
+      path:path.resolve(__dirname, 'dist'),
+      filename: 'index.js',
+   },
+   devServer: {
+      inline: true,
+      port: 3000
+   },
+    
+   module: {
+      rules: [
+         {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+                
+            query: {
+               presets: ['es2015', 'react']
+            }
+         }
+      ]
+   }
+}
+module.exports = config;
+
+
+
+
+
+
+
+import React from 'react';
+
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                
+                <h1>Hello World from My Component new ele</h1>
+                <table>
+                    <tr>
+                        Enter your name<input type="text"></input>
+                    </tr>    
+                </table>    
+                </div>
+        )   
+    }
+}
+
+export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './App.jsx'
+
+ReactDOM.render(<App></App>,document.getElementById('app'))
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+{
+    "name": "myreactapp",
+    "version": "1.0.0",
+    "description": "this is a sample app for react training",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack-dev-server"
+    },
+    "author": "PM",
+    "license": "ISC",
+    "dependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "html-webpack-plugin": "^3.2.0",
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1",
+        "webpack": "^4.16.1",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.4"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+Step 1 - Install Global Packages
+
+
+You will need to install several packages for this setup. We will need some of the babel plugins so let's first install babel by running the following code in command prompt window.
+
+C:\Users\username>npm install -g babel
+C:\Users\username>npm install -g babel-cli
+
+    
+
+    npm install takes 3 exclusive, optional flags which save or update the package version in your main package.json:
+
+-S, --save: Package will appear in your dependencies.
+
+-D, --save-dev: Package will appear in your devDependencies.
+
+-O, --save-optional: Package will appear in your optionalDependencies.
+
+When using any of the above options to save dependencies to your package.json, there is an additional, optional flag:
+
+-E, --save-exact: Saved dependencies will be configured with an exact version rather than using npm's default semver range operator.
+
+    
+    
+    
+Step 2 - Create Root Folder
+
+The root folder will be named reactApp and we will place it on Desktop. After the folder is created we need to open it and create empty package.json file inside by running npm init from the command prompt and follow the instructions.
+
+C:\Users\username\Desktop>mkdir reactApp
+C:\Users\username\Desktop\reactApp>npm init
+
+    
+    
+    
+    
+Step 3 - Add Dependencies and plugins
+We will use webpack bundler in these tutorials so let's install webpack and webpack-dev-server.
+
+C:\Users\username>npm install webpack --save
+C:\Users\username>npm install webpack-dev-server --save
+Since we want to use React, we need to install it first. The --save command will add these packages to package.json file.
+
+C:\Users\username\Desktop\reactApp>npm install react --save
+C:\Users\username\Desktop\reactApp>npm install react-dom --save
+We already mentioned that we will need some babel plugins so let's install it too.
+
+C:\Users\username\Desktop\reactApp>npm install babel-core
+C:\Users\username\Desktop\reactApp>npm install babel-loader
+C:\Users\username\Desktop\reactApp>npm install babel-preset-react
+C:\Users\username\Desktop\reactApp>npm install babel-preset-es2015
+
+    
+    
+Step 4 - Create files
+Let's create several files that we need. You can add it manually or you can use command prompt.
+
+C:\Users\username\Desktop\reactApp>touch index.html
+C:\Users\username\Desktop\reactApp>touch App.jsx
+C:\Users\username\Desktop\reactApp>touch main.js
+C:\Users\username\Desktop\reactApp>touch webpack.config.js
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+		var HelloWorld = React.createClass({
+			render: function(){
+				return(<h1> Hello World from Component</h1>)
+			}
+		})
+
+
+		ReactDOM.render(<HelloWorld/>,document.getElementById('example'))
+
+
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+		ReactDOM.render(<h1> Hello World </h1>,document.getElementById('example'))
+
+
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+//Application creator
+1] create application using package.json file with unique name
+2] npm adduser
+3] npm login
+4] npm publish
+
+
+//user of application
+5] npm install --save  sbm_react_app_my@1.0.0
+
+
+
+
+
+sbm_react_app_my@1.0.0
+    
+    
+    
+
+
+https://quizizz.com/join?gc=665672
+    
+    
+    
+
+joinmyquiz.com
+665672
+
+
+
+
+bar.js
+  module.exports = ‘I am a string’
+
+foo.js
+  var msg = require(‘./bar.js’)
+  console.log(msg) // prints ‘I am a string’
+
+
+
+
+
+
+
+bar.js
+  module.exports.hello = function() {return ‘hello’}
+  module.exports.bye = function() {return ‘bye’}
+foo.js
+  var bar = require(‘./bar.js’)
+  console.log(bar.hello()) // prints ‘hello’
+  console.log(bar.bye()) // prints ‘bye’
+
+
+
+    
+    
+
+PATTERN 1: DEFINE A GLOBAL
+    
+    
+// foo.js
+    foo = function () {
+      console.log('foo!');
+    }
+
+    // app.js
+    require('./foo.js');
+    foo();
+
+
+    
+PATTERN 2: EXPORT AN ANONYMOUS FUNCTION
+    
+
+  // bar.js
+    module.exports = function () {
+      console.log('bar!');
+    }
+ 
+// app.js
+    var bar = require('./bar.js');
+    bar();
+
+
+PATTERN 3: EXPORT A NAMED FUNCTION
+    
+    
+    // first.js
+    exports.fiz = function () {
+      console.log('fiz!');
+    }
+ 
+// app.js
+    var FOO = require('./first.js').fiz;
+    FOO();
+
+
+    
+PATTERN 4: EXPORT AN ANONYMOUS OBJECT
+      // buz.js
+    var Buz = function () {};
+    Buz.prototype.log = function () {
+      console.log('buz!');
+    };
+    module.exports = new Buz();
+
+  // app.js
+    var buz = require('./buz.js');
+    buz.log();
+
+
+    
+PATTERN 5: EXPORT A NAMED OBJECT
+    
+    
+ // baz.js
+    var Baz = function () {};
+    Baz.prototype.log = function () {
+      console.log('baz!');
+    };
+
+    exports.Baz = new Baz();
+
+    // app.js
+    var baz = require('./baz.js').Baz;
+    baz.log();
+
+
+PATTERN 6: EXPORT AN ANONYMOUS PROTOTYPE
+    
+    
+ // doo.js
+    var Doo = function () {};
+    Doo.prototype.log = function () {
+        console.log('doo!');
+    }
+    module.exports = Doo;
+
+// app.js
+    var Doo = require('./doo.js');
+    var doo = new Doo();
+    doo.log();
+
+
+PATTERN 7: EXPORT A NAMED PROTOTYPE
+// qux.js
+    var Qux = function () {};
+    Qux.prototype.log = function () {
+      console.log('baz!');
+    };
+    exports.Qux = Qux;
+
+
+    
+    // app.js
+    var Qux = require('./qux.js').Qux;
+    var qux = new Qux();
+    qux.log();
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+// Expression bodies
+var odds = evens.map(v => v + 1);
+var nums = evens.map((v, i) => v + i);
+var pairs = evens.map(v => ({even: v, odd: v + 1}));
+
+// Statement bodies
+nums.forEach(v => {
+  if (v % 5 === 0)
+    fives.push(v);
+});
+
+// Lexical this
+var bob = {
+  _name: "Bob",
+  _friends: [],
+  printFriends() {
+    this._friends.forEach(f =>
+      console.log(this._name + " knows " + f));
+  }
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		var records=[
+				{
+					id:1,
+					name:'Eshan',
+					years:13
+				},
+				{
+					id:2,
+					name:'Tanish',
+					years:4
+				},
+				{
+					id:3,
+					name:'Suha',
+					years: 3
+				},
+				{
+					id:4,
+					name:'Minal',
+					years:23
+				},
+				{
+					id:5,
+					name:'Paresh',
+					years:2
+				}
+		]
+
+		var names=[]
+		records.map(name=>names.push(name.name))
+
+		console.log(names)
+
+		var result=records.filter(rec=>rec.name==='Tanish')
+		console.log(result)
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+var records=[
+	{
+		id:1,
+		name:'Eshan'
+		years:13
+	},
+	{},
+	{},
+	{},
+	{}
+
+]
+
+1] and display names from these 5 records
+2] display only specific name like 'tanish'
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var sample=[1,2,3]
+
+		//foreach
+
+
+		//ES5
+		// sample.forEach(function(ele,index){
+		// 	console.log(ele+" Comes at"+index)
+		// })
+
+		//ES6 
+		//sample.forEach((ele,index)=> `${ele} Comes at ${index}`)
+
+		//sample.forEach((ele,index)=> (console.log(ele+"Comes at "+index)))
+
+
+		//filter
+		//ES5
+		// var res=sample.filter(function(ele){
+		// 	return ele!==2
+		// })
+		// console.log(res)
+
+		//ES6
+		//var res2=sample.filter(ele=>ele!==2)
+		//console.log(res2)
+
+
+		//MAP
+		//ES5
+		// var mapped1=sample.map(function(ele){
+		// 	return ele*10
+		// })
+		// console.log("Mapped 1"+mapped1)
+
+		// //ES6
+		// var mapped2=sample.map(ele=>ele*10)
+		// console.log("Mapped 2"+mapped2)
+
+		
+		//REDUCE
+		//ES5
+
+		var sum1=sample.reduce(function(sum,ele){
+			return sum+ele
+		})
+
+		console.log(sum1)
+
+
+		//ES6
+		var sum2=sample.reduce((sum,ele)=>sum+ele)
+		console.log(sum2)
+
+
+
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var sample=[1,2,3]
+
+		//foreach
+
+
+		//ES5
+		// sample.forEach(function(ele,index){
+		// 	console.log(ele+" Comes at"+index)
+		// })
+
+		//ES6 
+		//sample.forEach((ele,index)=> `${ele} Comes at ${index}`)
+
+		//sample.forEach((ele,index)=> (console.log(ele+"Comes at "+index)))
+
+
+		//filter
+		//ES5
+		// var res=sample.filter(function(ele){
+		// 	return ele!==2
+		// })
+		// console.log(res)
+
+		//ES6
+		var res2=sample.filter(ele=>ele!==2)
+		console.log(res2)
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+var evens=[10,23,43,54,65,7,67,44]
+undefined
+var plusOne=evens.map(v => v+1)
+undefined
+plusOne
+(8) [11, 24, 44, 55, 66, 8, 68, 45]
+hello=function(){
+    return "Hello World"
+}
+ƒ (){
+    return "Hello World"
+}
+hello=()=>{
+    return "Hello World"
+}
+()=>{
+    return "Hello World"
+}
+hello=()=> "Hello World"
+()=> "Hello World"
+hello=(myval)=>"Hello"+myval
+(myval)=>"Hello"+myval
+hello(100)
+"Hello100"
+hello=myval=>"Hello"+myval
+myval=>"Hello"+myval
+hello(100)
+"Hello100"
+
+
+
+
+
+
+
+Arrows are a function shorthand using the => syntax. They are syntactically similar to the related feature in C#, Java 8 and CoffeeScript. They support both statement block bodies as well as expression bodies which return the value of the expression. Unlike functions, arrows share the same lexical this as their surrounding code.
+
+
+
+
+
+
+arrows
+classes
+enhanced object literals
+template strings
+destructuring
+default + rest + spread
+let + const
+iterators + for..of
+generators
+unicode
+modules
+module loaders
+map + set + weakmap + weakset
+proxies
+symbols
+subclassable built-ins
+promises
+math + number + string + array + object APIs
+binary and octal literals
+reflect api
+tail calls
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var db=openDatabase('myRecords','1.0','Description',2*1024*1024)
+		db.transaction(function(tx){
+			tx.executeSql('CREATE TABLE Employee(id unique,name)')
+		})
+
+		db.transaction(function(tx){
+			// tx.executeSql('INSERT INTO Employee(id,name) values(101,"Eshan")')
+			tx.executeSql('INSERT INTO Employee(id,name) values(102,"Minal")')
+			tx.executeSql('INSERT INTO Employee(id,name) values(103,"Tanish")')
+			tx.executeSql('INSERT INTO Employee(id,name) values(104,"Suha")')
+		})
+
+		db.transaction(function(tx){
+			tx.executeSql('select * from Employee',[],function(tx,result){
+				var len=result.rows.length,i
+				for(i=0;i<len;i++){
+					alert(result.rows.item(i).name)
+				}
+			})
+		})	
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var db=openDatabase('myRecords','1.0','Description',2*1024*1024)
+		db.transaction(function(tx){
+			tx.executeSql('CREATE TABLE Employee(id unique,name)')
+		})
+
+		db.transaction(function(tx){
+			tx.executeSql('INSERT INTO Employee(id,name) values(101,"Eshan")')
+		})
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+		//1 base class
+		function Person(fName,lName){
+			this.firstName=fName
+			this.lastName=lName
+		}
+
+		Person.prototype.getFullName=function(){
+			return this.firstName+ ' '+this.lastName
+		}
+
+		//2 Derived Class
+		function Employee(fName,lName,eId){
+			Person.call(this,fName,lName)
+			this.empId=eId
+		}
+
+		Employee.prototype=Object.create(Person.prototype)
+		Employee.prototype.constructor=Employee
+
+		Employee.prototype.getEmployeeDetails=function(){
+			return [this.empId,this.firstName,this.lastName]
+		}
+
+
+		var e1=new Employee('Eshan','Madake',101)
+		alert(e1.getFullName())
+		alert(e1.getEmployeeDetails())
+
+
+
+        
+        
+        
+        
+        
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+		//1
+		function Car(){}
+		Car.prototype.speed="Car Speed"
+		Car.prototype.setSpeed=function(speed){
+			this.speed=speed
+			alert("car Speed is changed")
+		}
+
+		Car.prototype.showCarDetails=function(){
+			alert("Car Details")
+		}
+
+		//2
+
+		function Ferrari(){}
+		
+		Ferrari.prototype=new Car();
+		Ferrari.prototype.constructor=Ferrari
+
+		Ferrari.prototype.setSpeed=function(speed){
+
+			this.speed=speed
+			alert("Ferrari speed is changed")
+		}
+
+		
+
+		var c1=new Ferrari();
+		c1.setSpeed(100)
+		c1.showCarDetails();	
+
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+
+		//Literal Version
+
+
+		var c1={
+			real:0,
+			imag:0,
+			showValues:function(){
+				alert("values are "+this.real+"Imag"+this.imag)
+			}
+		}
+
+
+		c1.showValues();
+
+
+
+
+
+		//Construction Version
+//		function Complex(real,imag){
+		// 	this.real=real;
+		// 	this.imag=imag;
+
+		// 	// this.showValues=function(){
+		// 	// 	alert("VAlues are"+this.real+" Imag "+this.imag)
+		// 	// }
+		// }
+
+		// Complex.prototype.showValues=function(){
+		// 	alert("Values are"+this.real+" Imag "+this.imag)
+		// }
+
+		// var c1=new Complex(10,20);
+		// //c1.showValues();
+
+		// var coll=new Array();
+		// coll.push(c1)
+		// coll.push(new Complex(200,300))
+		// coll.push(new Complex(400,500))
+		// coll.push(new Complex(200,300))
+		// coll.push(new Complex(300,800))
+
+		// for(i in coll){
+		// 	coll[i].showValues();
+		// }
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+1] Pascal Case
+   
+   Employee
+   SalesEmployee
+
+
+
+2] Camel case
+  
+  empId
+  displayEmployeeDetails
+
+
+
+
+CODE COMPLETE
